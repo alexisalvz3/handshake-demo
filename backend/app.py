@@ -13,7 +13,7 @@ print("DB Password:", os.getenv('DB_PASSWORD'))
 #print("DB Config:", {k:v for k,v in db_config.items() if k != 'password'})  # prints config without exposing password
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="*")
 
 # configuring the database connection
 db_config = {
