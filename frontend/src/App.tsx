@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getStudents } from "./services/api";
 import { Student } from "./types/Student";
 import StudentTable from "./components/StudentTable";
+import { getStudents } from "./services/api";
 
 function App() {
   const [students, setStudents] = useState<Student[]>([]);
+
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -14,9 +16,10 @@ function App() {
     };
     fetchStudents();
   }, []);
+
   return (
     <>
-      <StudentTable students={students} minWidth={650} />
+      <StudentTable students={students} />
     </>
   );
 }

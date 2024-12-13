@@ -9,9 +9,6 @@ from dotenv import load_dotenv
 # load environment variables
 load_dotenv()
 
-print("DB Password:", os.getenv('DB_PASSWORD'))
-#print("DB Config:", {k:v for k,v in db_config.items() if k != 'password'})  # prints config without exposing password
-
 app = Flask(__name__)
 CORS(app, origins="*")
 
@@ -23,11 +20,8 @@ db_config = {
     'database': os.getenv('DB_NAME'),
 }
 
-print("DB Host:", os.getenv('DB_HOST'))
-print("DB User:", os.getenv('DB_USER'))
-print("DB password:", os.getenv('DB_PASSWORD'))
 
-@app.route('/index', methods=['GET'])
+@app.route('/index', methods=['GET', 'POST'])
 def get_students():
     try:
         conn = mysql.connector.connect(**db_config)
